@@ -1,0 +1,42 @@
+/** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme')
+export default {
+    content: [],
+    theme: {
+        fontFamily: {
+            sans: ["Roboto", ...defaultTheme.fontFamily.sans],
+        },
+        extend: {
+            colors: {
+                'medium-blue': '#122DB0',
+                'vivid-black': '#010101',
+                'light-gray': '#D3D3D3'
+            },
+
+        },
+        screens: {
+            'xxs': '376px',
+            // => @media (min-width: 376px) { ... }
+
+            'xs': '576px',
+            // => @media (min-width: 576px) { ... }
+
+            'sm': '770px',
+            // => @media (min-width: 770px) { ... }
+
+            'md': '990px',
+            // => @media (min-width: 990px) { ... }
+
+            'lg': '1024px',
+            // => @media (min-width: 1024px) { ... }
+
+            'xl': '1280px',
+            // => @media (min-width: 1280px) { ... }
+
+            '2xl': '1536px',
+            // => @media (min-width: 1536px) { ... }
+        }
+    },
+    plugins: [],
+}
+
