@@ -4,7 +4,7 @@
 
 <template>
   <div>
-    Login/register
+    Login/register page
   </div>
 </template>
 
