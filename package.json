@@ -10,7 +10,9 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.11.2",
     "nuxt": "^3.9.3",
+    "sass": "^1.70.0",
     "vue": "^3.4.14",
     "vue-router": "^4.2.5"
   }
