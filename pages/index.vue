@@ -1,19 +1,16 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
   <AppContainer>
-    <template #default>
-      <div class="w-full h-screen relative">
-        <div class=" w-[900px] h-[500px] rounded-3xl bg-white absolute left-[50%] top-[50%] -translate-y-2/4 -translate-x-2/4">
-          content
+    <template >
+      <div class="w-dvw h-dvh p-4 flex items-center justify-center">
+        <div class="max-w-[1200px] w-full h-5/6 rounded-[80px] bg-white text-white grid grid-cols-2">
+          <div class="text-red-400">
+            grid
+          </div>
+          <div class="text-red-400">
+            grid
+          </div>
         </div>
       </div>
     </template>
   </AppContainer>
 </template>
-
-<style scoped>
-
-</style>
