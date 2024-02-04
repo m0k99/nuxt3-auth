@@ -1,12 +1,11 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require('tailwindcss/defaultTheme')
 export default {
     content: [],
     theme: {
-        fontFamily: {
-            sans: ["Roboto", ...defaultTheme.fontFamily.sans],
-        },
         extend: {
+            fontFamily: {
+                sans: ['Montserrat', 'sans-serif']
+            },
             colors: {
                 'medium-blue': '#1E27B7',
                 'vivid-black': '#010101',
