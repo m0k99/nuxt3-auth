@@ -4,7 +4,7 @@
       <img src="/blue-background.jpg" class="w-full h-full object-cover object-center" alt=""/>
     </div>
     <div class="w-dvw h-dvh fixed">
-      <slot></slot>
+      <slot/>
     </div>
   </div>
 </template>

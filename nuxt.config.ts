@@ -4,6 +4,9 @@ export default defineNuxtConfig({
         '@nuxtjs/tailwindcss'
     ],
     css: ['~/assets/scss/main.scss'],
+    tailwindcss: {
+        cssPath: '~/assets/css/tailwind.css',
+    },
     devtools: {enabled: true},
     components: [
         {"path": "~/components/Core"},
