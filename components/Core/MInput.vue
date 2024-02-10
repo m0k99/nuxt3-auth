@@ -1,5 +1,6 @@
 <script lang="ts">
-import {ref, onMounted} from 'vue'
+import {ref, onMounted, toRefs, watch, computed} from 'vue'
+import {useUI} from "~/composables/useUI";
 
 export default defineComponent({
   props: {
@@ -7,11 +8,6 @@ export default defineComponent({
       type: [String, Number],
       required: true,
       default: ''
-    },
-    type: {
-      type: String,
-      required: false,
-      default: 'text'
     },
     id: {
       type: String,
@@ -63,8 +59,10 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, {emit}) {
+    const {ui} = useUI('input', toRef(props, 'className'))
 
     const input = ref<HTMLInputElement | null>(null)
+
 
     const autoFocus = () => {
       if (props.autofocus) {
@@ -94,13 +92,12 @@ export default defineComponent({
 </script>
 
 <template>
-  <div>
+  <div class="wrapper-class">
     <input
       ref="input"
       :id="id"
       :name="name"
       :value="modelValue"
-      :type="type"
       :required="required"
       :placeholder="placeholder"
       :disabled="disabled"
