@@ -1,7 +1,8 @@
 <template>
   <AppMainContainer>
     <div class="w-dvw h-dvh p-4 flex items-center justify-center">
-      <div class="max-w-[1200px] w-full h-5/6 md:rounded-[80px] bg-white rounded-3xl grid sm:grid-cols-2">
+      <div
+        class="max-w-[1200px] w-full h-5/6 md:rounded-[80px] bg-white backdrop-blur-[100px] bg-opacity-30 rounded-3xl grid sm:grid-cols-2">
         <AppForm/>
         <div class="text-red-400 sm:block hidden">
           grid
