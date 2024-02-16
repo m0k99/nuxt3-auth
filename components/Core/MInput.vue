@@ -3,6 +3,7 @@
     <input
       ref="input"
       :id="id"
+      :type="type"
       :name="name"
       :value="modelValue"
       :required="required"
@@ -27,6 +28,11 @@ export default defineComponent({
       type: [String, Number],
       required: true,
       default: ''
+    },
+    type: {
+      type: String,
+      required: false,
+      default: 'text'
     },
     id: {
       type: String,
@@ -61,7 +67,7 @@ export default defineComponent({
     autofocusDelay: {
       type: Number,
       required: false,
-      default: 100
+      default: 500
     },
     loading: {
       type: Boolean,
@@ -80,14 +86,17 @@ export default defineComponent({
   setup(props, {emit}) {
     const {ui} = useUI('input', inputConfig)
     const input = ref<HTMLInputElement | null>(null)
+
     const className = computed(() => {
       return twMerge(twJoin(
         ui.base,
         ui.rounded,
         ui.placeholder,
         ui.padding,
+        ui.transition
       ), props.inputClass)
     })
+
     const autoFocus = () => {
       if (props.autofocus) {
         input.value?.focus()
