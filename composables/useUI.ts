@@ -1,7 +1,3 @@
-import type {Ref} from 'vue'
-import {getUi} from "~/utils";
-
-export const useUI = <T>(key: string, $config?: Ref<T> | T) => {
-    const ui = getUi(key)
-    return {ui: key};
+export const useUI = <T>(key: string, defaultConfig: Record<string, any>) => {
+    return {ui: defaultConfig}
 }

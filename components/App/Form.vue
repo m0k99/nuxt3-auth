@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import {ref} from "vue";
-
 const input = ref('')
-const disabled = ref(false)
-
 </script>
 
 <template>
@@ -17,8 +14,8 @@ const disabled = ref(false)
         Please enter your details.
       </span>
     </div>
-    <div>
-      <MInput v-model="input" :disabled="disabled"/>
+    <div class="grid grid-cols-1 place-content-center max-w-[320px] mx-auto w-full">
+      <MInput v-model="input" placeholder="Email"/>
     </div>
   </div>
 </template>

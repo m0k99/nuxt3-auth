@@ -1,5 +1,24 @@
+<template>
+  <div :class="ui.wrapperClass">
+    <input
+      ref="input"
+      :id="id"
+      :name="name"
+      :value="modelValue"
+      :required="required"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      :class="className"
+      @input="onInput"
+      @change="onChange"
+    >
+  </div>
+</template>
+
 <script lang="ts">
-import {ref, onMounted, toRefs, watch, computed} from 'vue'
+import {ref, onMounted, defineComponent} from 'vue'
+import {input as inputConfig} from "../../ui.config";
+import {twJoin, twMerge} from "tailwind-merge";
 import {useUI} from "~/composables/useUI";
 
 export default defineComponent({
@@ -52,37 +71,48 @@ export default defineComponent({
       type: String,
       default: '',
     },
-    className: {
+    inputClass: {
       type: String,
       default: ''
     },
   },
   emits: ['update:modelValue'],
   setup(props, {emit}) {
-    const {ui} = useUI('input', toRef(props, 'className'))
-
+    const {ui} = useUI('input', inputConfig)
     const input = ref<HTMLInputElement | null>(null)
-
-
+    const className = computed(() => {
+      return twMerge(twJoin(
+        ui.base,
+        ui.rounded,
+        ui.placeholder,
+        ui.padding,
+      ), props.inputClass)
+    })
     const autoFocus = () => {
       if (props.autofocus) {
         input.value?.focus()
       }
     }
+
     const onInput = (event: Event) => {
       const value = (event.target as HTMLInputElement).value
       emit('update:modelValue', value)
     }
+
     const onChange = (event: Event) => {
       const value = (event.target as HTMLInputElement).value
       emit('update:modelValue', value)
     }
+
     onMounted(() => {
       setTimeout(() => {
         autoFocus()
       }, props.autofocusDelay)
     })
+
     return {
+      ui,
+      className,
       input,
       onInput,
       onChange
@@ -90,23 +120,6 @@ export default defineComponent({
   }
 })
 </script>
-
-<template>
-  <div class="wrapper-class">
-    <input
-      ref="input"
-      :id="id"
-      :name="name"
-      :value="modelValue"
-      :required="required"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :class="className"
-      @input="onInput"
-      @change="onChange"
-    >
-  </div>
-</template>
 
 <style scoped>
 body {
