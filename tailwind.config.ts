@@ -25,6 +25,9 @@ export default {
         'vivid-black': '#010101',
         'light-gray': '#D3D3D3'
       },
+      spacing: {
+        '15': '3.75rem'
+      }
     },
     screens: {
       'xxs': '376px',
