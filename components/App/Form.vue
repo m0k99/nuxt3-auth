@@ -1,8 +1,14 @@
 <script setup lang="ts">
-import {reactive} from "vue";
+import {computed, reactive, ref} from "vue";
 
 const form = reactive({email: '', password: ''})
-
+const passInputType = ref('password')
+const passwordIcon = computed(() => {
+  return passInputType.value === 'password' ? 'eva:eye-off-outline' : 'eva:eye-outline'
+})
+const togglePasswordType = () => {
+  passInputType.value = passInputType.value === 'password' ? 'text' : 'password'
+}
 </script>
 
 <template>
@@ -17,8 +23,19 @@ const form = reactive({email: '', password: ''})
       </span>
     </div>
     <form class="grid grid-cols-1 place-content-center max-w-[320px] mx-auto w-full">
-      <MInput v-model="form.email" autofocus name="email" type="email" placeholder="Email" class="mb-4"/>
-      <MInput v-model="form.password" name="password" type="password" placeholder="Password"/>
+      <MInput
+        v-model="form.email"
+        autofocus name="email"
+        type="email"
+        placeholder="Email"
+        class="mb-4"
+        trailing-icon="basil:envelope-solid"
+      />
+      <MInput v-model="form.password" name="password" :type="passInputType" placeholder="Password">
+        <template #trailing>
+          <Icon class="cursor-pointer" :name="passwordIcon" size="24px" color="#9ca3af" @click="togglePasswordType"/>
+        </template>
+      </MInput>
     </form>
   </div>
 </template>
