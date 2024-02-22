@@ -13,6 +13,16 @@
       @input="onInput"
       @change="onChange"
     >
+    <span v-if="leadingIcon || $slots.leading" class="absolute left-5 top-1/2 -translate-y-1/2">
+      <slot name="leading" :disabled="disabled" :loading="loading">
+        <Icon :name="leadingIcon" size="24px" color="#9ca3af"/>
+      </slot>
+    </span>
+    <span v-if="trailingIcon || $slots.trailing" class="absolute right-5 top-1/2 -translate-y-1/2">
+      <slot name="trailing" :disabled="disabled" :loading="loading">
+        <Icon :name="trailingIcon" size="24px" color="#9ca3af"/>
+      </slot>
+    </span>
   </div>
 </template>
 
@@ -71,15 +81,28 @@ export default defineComponent({
     },
     loading: {
       type: Boolean,
+      required: false,
       default: false
     },
     color: {
       type: String,
+      required: false,
       default: '',
     },
     inputClass: {
       type: String,
+      required: false,
       default: ''
+    },
+    leadingIcon: {
+      type: String,
+      required: false,
+      default: null
+    },
+    trailingIcon: {
+      type: String,
+      required: false,
+      default: null
     },
   },
   emits: ['update:modelValue'],
