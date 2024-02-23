@@ -26,7 +26,7 @@ import {computed, defineComponent} from 'vue'
 import {checkbox as checkboxUi} from "../../ui.config";
 import {twJoin, twMerge} from "tailwind-merge";
 import {useUI} from "~/composables/useUI";
-import {randomId} from "~/utils";
+import {randomId} from "~/utils/randomId";
 
 export default defineComponent({
   props: {
@@ -89,7 +89,7 @@ export default defineComponent({
       }
     })
     const inputId = computed(() => {
-      return props.id ? props.id : randomId()
+      return props.id ? props.id : randomId('checkbox')
     })
     return {
       toggle,
