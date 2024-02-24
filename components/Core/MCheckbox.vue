@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent} from 'vue'
+import {computed, defineComponent, onMounted, ref} from 'vue'
 import {checkbox as checkboxUi} from "../../ui.config";
 import {twJoin, twMerge} from "tailwind-merge";
 import {useUI} from "~/composables/useUI";
@@ -88,8 +88,9 @@ export default defineComponent({
         emit('update:modelValue', value)
       }
     })
-    const inputId = computed(() => {
-      return props.id ? props.id : randomId('checkbox')
+    let inputId = ref('')
+    onMounted(() => {
+      inputId.value = props.id || randomId('checkbox')
     })
     return {
       toggle,

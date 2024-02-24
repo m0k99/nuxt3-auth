@@ -18,7 +18,7 @@
         <Icon :name="leadingIcon" size="20px" color="#9ca3af"/>
       </slot>
     </span>
-    <span v-if="trailingIcon || $slots.trailing" class="absolute right-8 top-1/2 -translate-y-1/2">
+    <span v-if="trailingIcon || $slots.trailing" class="absolute md:right-8 right-5 top-1/2 -translate-y-1/2">
       <slot name="trailing" :disabled="disabled" :loading="loading">
         <Icon :name="trailingIcon" size="20px" color="#9ca3af"/>
       </slot>
