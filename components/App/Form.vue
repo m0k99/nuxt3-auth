@@ -15,10 +15,10 @@ const togglePasswordType = () => {
   <div class="grid grid-cols-1 gap-10 md:gap-20 place-content-center px-3 py-10">
     <div class="text-center">
       <img class="block mx-auto w-[40px] object-cover mb-5" src="/icons/house.png" alt="">
-      <h1 class="text-4xl text-[40px] text-white font-semibold -tracking-[0.01em] mb-3">
+      <h1 class="text-4xl text-[40px] font-semibold -tracking-[0.01em] mb-3">
         Welcome home
       </h1>
-      <span class="text-white">
+      <span>
         Please enter your details.
       </span>
     </div>
