@@ -3,6 +3,6 @@ export default {
     base: 'h-4 w-4 disabled:opacity-50 disabled:cursor-not-allowed focus:ring-0 focus:ring-transparent focus:ring-offset-transparent',
     required: 'text-sm text-red-500',
     rounded: 'rounded',
-    label: 'text-xs cursor-pointer select-none',
+    label: 'text-xs text-gray-700 cursor-pointer select-none font-light',
     help: 'text-sm text-gray-500',
 }
