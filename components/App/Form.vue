@@ -10,6 +10,18 @@ const togglePasswordType = () => {
   passInputType.value = passInputType.value === 'password' ? 'text' : 'password'
 }
 const loginTypes = ['logos:apple', 'logos:google-icon', 'logos:facebook']
+import {useApiFetch} from "~/composables/useApiFetch";
+
+const user=ref({})
+async function login() {
+  await useApiFetch('/sanctum/csrf-cookie')
+  await useApiFetch('/login', {
+    method: 'POST',
+    body: form,
+    watch: false,
+  })
+  user.value = await useApiFetch('/api/user')
+}
 </script>
 
 <template>
@@ -23,7 +35,7 @@ const loginTypes = ['logos:apple', 'logos:google-icon', 'logos:facebook']
         Please enter your details.
       </span>
     </div>
-    <form class="grid grid-cols-1 place-content-center max-w-[320px] mx-auto w-full gap-y-4">
+    <form @submit.prevent="login" class="grid grid-cols-1 place-content-center max-w-[320px] mx-auto w-full gap-y-4">
       <MInput
         v-model="form.email"
         autofocus
@@ -48,6 +60,7 @@ const loginTypes = ['logos:apple', 'logos:google-icon', 'logos:facebook']
       <button
         v-for="(logo , index) in loginTypes"
         :key="index"
+        type="submit"
         class="rounded-full border border-gray-300 w-12 h-12 flex items-center justify-center"
       >
         <icon :name="logo"></icon>
