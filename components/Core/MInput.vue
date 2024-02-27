@@ -3,7 +3,7 @@
     <input
       ref="input"
       :id="id"
-      :type="type"
+      :type="inputType"
       :name="name"
       :value="modelValue"
       :required="required"
@@ -18,16 +18,17 @@
         <Icon :name="leadingIcon" size="20px" color="#9ca3af"/>
       </slot>
     </span>
-    <span v-if="trailingIcon || $slots.trailing" class="absolute md:right-8 right-5 top-1/2 -translate-y-1/2">
-      <slot name="trailing" :disabled="disabled" :loading="loading">
+    <span class="absolute md:right-8 right-5 top-1/2 -translate-y-1/2" >
+      <slot v-if="trailingIcon || $slots.trailing" name="trailing" :disabled="disabled" :loading="loading">
         <Icon :name="trailingIcon" size="20px" color="#9ca3af"/>
       </slot>
+      <Icon v-else class="cursor-pointer" :name="passwordIcon" size="24px" color="#9ca3af" @click="togglePasswordType"/>
     </span>
   </div>
 </template>
 
 <script lang="ts">
-import {ref, onMounted, defineComponent} from 'vue'
+import {ref, onMounted, defineComponent, computed} from 'vue'
 import {input as inputConfig} from "../../ui.config";
 import {twJoin, twMerge} from "tailwind-merge";
 import {useUI} from "~/composables/useUI";
@@ -109,7 +110,7 @@ export default defineComponent({
   setup(props, {emit}) {
     const {ui} = useUI('input', inputConfig)
     const input = ref<HTMLInputElement | null>(null)
-
+    const inputType = ref(props.type)
     const className = computed(() => {
       return twMerge(twJoin(
         ui.base,
@@ -125,7 +126,18 @@ export default defineComponent({
         input.value?.focus()
       }
     }
-
+    const passwordIcon = computed(() => {
+      if (props.type === 'password' && inputType.value === 'password') {
+        return 'eva:eye-off-outline'
+      } else if (props.type === 'password' && inputType.value === 'text') {
+        return 'eva:eye-outline'
+      } else {
+        return ''
+      }
+    })
+    const togglePasswordType = () => {
+      inputType.value = inputType.value === 'password' ? 'text' : 'password'
+    }
     const onInput = (event: Event) => {
       const value = (event.target as HTMLInputElement).value
       emit('update:modelValue', value)
@@ -143,9 +155,12 @@ export default defineComponent({
     })
 
     return {
+      inputType,
       ui,
       className,
       input,
+      passwordIcon,
+      togglePasswordType,
       onInput,
       onChange
     }
