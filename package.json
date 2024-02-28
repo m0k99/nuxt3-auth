@@ -18,6 +18,7 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "defu": "^6.1.4",
     "tailwind-merge": "^2.2.1"
   }
 }
