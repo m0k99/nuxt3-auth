@@ -18,7 +18,9 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.5.1",
     "defu": "^6.1.4",
+    "pinia": "^2.1.7",
     "tailwind-merge": "^2.2.1"
   }
 }

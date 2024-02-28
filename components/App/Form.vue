@@ -1,26 +1,15 @@
 <script setup lang="ts">
-import {computed, reactive, ref} from "vue";
+import {computed, ref} from "vue";
+import {useAuthStore} from "~/stores/useAuthStore";
 
-const form = reactive({email: '', password: '', remember: false})
-const passInputType = ref('password')
-const passwordIcon = computed(() => {
-  return passInputType.value === 'password' ? 'eva:eye-off-outline' : 'eva:eye-outline'
-})
-const togglePasswordType = () => {
-  passInputType.value = passInputType.value === 'password' ? 'text' : 'password'
-}
+const auth = useAuthStore()
+const form = ref({email: '', password: '', remember: false})
 const loginTypes = ['logos:apple', 'logos:google-icon', 'logos:facebook']
-import {useApiFetch} from "~/composables/useApiFetch";
 
-const user=ref({})
-async function login() {
-  await useApiFetch('/sanctum/csrf-cookie')
-  await useApiFetch('/login', {
-    method: 'POST',
-    body: form,
-    watch: false,
-  })
-  user.value = await useApiFetch('/api/user')
+const loginPending = computed(() => auth.pending)
+
+async function handleLogin() {
+  const {error} = await auth.login(form.value)
 }
 </script>
 
@@ -35,7 +24,9 @@ async function login() {
         Please enter your details.
       </span>
     </div>
-    <form @submit.prevent="login" class="grid grid-cols-1 place-content-center max-w-[320px] mx-auto w-full gap-y-4">
+    <form
+      @submit.prevent="handleLogin"
+      class="grid grid-cols-1 place-content-center max-w-[320px] mx-auto w-full gap-y-4">
       <MInput
         v-model="form.email"
         autofocus
@@ -44,13 +35,16 @@ async function login() {
         placeholder="Email"
         trailing-icon="heroicons:envelope-solid"
       />
-      <MInput v-model="form.password" required name="password" :type="passInputType" placeholder="Password">
-        <template #trailing>
-          <Icon class="cursor-pointer" :name="passwordIcon" size="24px" color="#9ca3af" @click="togglePasswordType"/>
-        </template>
-      </MInput>
+      <MInput v-model="form.password" required name="password" type="password" placeholder="Password"/>
       <MCheckbox v-model="form.remember" name="remember" label="Remember me 30 days"/>
-      <MButton type="submit" block class="h-12 text-white bg-medium-blue font-medium mt-4">Login</MButton>
+      <MButton
+        :loading="loginPending"
+        type="submit"
+        block
+        class="h-12 text-white bg-medium-blue font-medium mt-4"
+      >
+        Login
+      </MButton>
     </form>
     <div class="relative max-w-[320px] mx-auto w-full">
       <div class="bg-gray-300 h-px w-full"></div>
@@ -60,7 +54,6 @@ async function login() {
       <button
         v-for="(logo , index) in loginTypes"
         :key="index"
-        type="submit"
         class="rounded-full border border-gray-300 w-12 h-12 flex items-center justify-center"
       >
         <icon :name="logo"></icon>
