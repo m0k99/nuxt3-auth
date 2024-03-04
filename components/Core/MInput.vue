@@ -10,6 +10,7 @@
       :placeholder="placeholder"
       :disabled="disabled"
       :class="className"
+      :autocomplete="autocomplete"
       @input="onInput"
       @change="onChange"
     >
@@ -18,7 +19,7 @@
         <Icon :name="leadingIcon" size="20px" color="#9ca3af"/>
       </slot>
     </span>
-    <span class="absolute md:right-8 right-5 top-1/2 -translate-y-1/2" >
+    <span class="absolute md:right-8 right-5 top-1/2 -translate-y-1/2">
       <slot v-if="trailingIcon || $slots.trailing" name="trailing" :disabled="disabled" :loading="loading">
         <Icon :name="trailingIcon" size="20px" color="#9ca3af"/>
       </slot>
@@ -105,6 +106,11 @@ export default defineComponent({
       required: false,
       default: null
     },
+    autocomplete: {
+      type: String,
+      required: false,
+      default: null
+    }
   },
   emits: ['update:modelValue'],
   setup(props, {emit}) {
