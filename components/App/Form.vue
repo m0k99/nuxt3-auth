@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import {computed, ref} from "vue";
+import {computed, ref,} from "vue";
 import {useAuthStore} from "~/stores/useAuthStore";
 
 const auth = useAuthStore()
-const form = ref({email: '', password: '', remember: false})
+const form = ref({email: '', password: ''})
 const loginTypes = ['logos:apple', 'logos:google-icon', 'logos:facebook']
-
+const user = computed(() => auth.user)
 const loginPending = computed(() => auth.pending)
 
 async function handleLogin() {
-  const {error} = await auth.login(form.value)
+  await auth.login(form.value)
 }
 </script>
 
@@ -20,12 +20,15 @@ async function handleLogin() {
       <h1 class="text-4xl text-[40px] font-semibold -tracking-[0.01em] mb-3">
         Welcome home
       </h1>
+      <pre>
+        {{ user }}
+      </pre>
       <span>
         Please enter your details.
       </span>
     </div>
     <form
-      @submit.prevent="handleLogin"
+      @submit.prevent="handleLogin "
       class="grid grid-cols-1 place-content-center max-w-[320px] mx-auto w-full gap-y-4">
       <MInput
         v-model="form.email"
@@ -36,7 +39,7 @@ async function handleLogin() {
         trailing-icon="heroicons:envelope-solid"
       />
       <MInput v-model="form.password" required name="password" type="password" placeholder="Password"/>
-      <MCheckbox v-model="form.remember" name="remember" label="Remember me 30 days"/>
+      <!--      <MCheckbox v-model="form.remember" name="remember" label="Remember me 30 days"/>-->
       <MButton
         :loading="loginPending"
         type="submit"
