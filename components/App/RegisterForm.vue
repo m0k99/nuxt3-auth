@@ -38,7 +38,6 @@ async function handelRegister() {
     />
     <MInput
       v-model="form.email"
-      autofocus
       name="email"
       type="email"
       placeholder="Email"
