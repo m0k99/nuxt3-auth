@@ -1,6 +1,6 @@
 <template>
   <button
-    :type="type"
+    :type="type || undefined"
     :disabled="disabled"
     :class="className"
   >
@@ -9,7 +9,8 @@
   </button>
 </template>
 <script lang="ts">
-import {defineComponent} from "vue";
+import type { PropType } from "vue";
+import { defineComponent, computed } from "vue";
 import {button as buttonConfig} from "../../ui.config";
 import {twJoin, twMerge} from "tailwind-merge";
 import {useUI} from "~/composables/useUI";
@@ -17,7 +18,7 @@ import {useUI} from "~/composables/useUI";
 export default defineComponent({
   props: {
     type: {
-      type: String,
+      type: String as PropType<"button" | "submit" | "reset">, // Specifying allowed types
       default: 'button'
     },
     block: {
@@ -32,6 +33,11 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    class: {
+      type: String,
+      required: false,
+      default: ''
+    },
   },
   setup(props) {
     const {ui} = useUI('button', buttonConfig)
@@ -40,7 +46,7 @@ export default defineComponent({
         ui.base,
         ui.rounded,
         props.block ? ui.block : ui.inline,
-      ))
+      ), props.class)
     })
     return {
       className
