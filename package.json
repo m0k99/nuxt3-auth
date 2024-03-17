@@ -23,6 +23,7 @@
     "@pinia/nuxt": "^0.5.1",
     "defu": "^6.1.4",
     "pinia": "^2.1.7",
-    "tailwind-merge": "^2.2.1"
+    "tailwind-merge": "^2.2.1",
+    "vue3-skeleton-loader": "^0.2.0"
   }
 }
