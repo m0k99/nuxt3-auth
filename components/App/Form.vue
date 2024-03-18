@@ -38,7 +38,6 @@ const toggleComponent = () => {
       <span v-if="activeForm === 'LoginForm'" class="text-gray-500">
         Are you new?
         <MButton
-          type="link"
           class="underline text-medium-blue"
           @click="toggleComponent"
         >
@@ -48,7 +47,6 @@ const toggleComponent = () => {
       <span v-else class="text-gray-500">
         Have an account?
         <MButton
-          type="link"
           class="underline text-medium-blue"
           @click="toggleComponent"
         >
