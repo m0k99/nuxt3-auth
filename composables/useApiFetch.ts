@@ -1,19 +1,26 @@
-import type {UseFetchOptions} from '#app'
+import {type UseFetchOptions} from '#app'
 import {defu} from "defu";
 
 export function useApiFetch<T>(url: string | (() => string), options: UseFetchOptions<T> = {}) {
     const token = useCookie('XSRF-TOKEN')
-    const headers: any = {}
+    let headers: any = {}
     const config = useRuntimeConfig()
     if (token.value) {
         headers['X-XSRF-TOKEN'] = token.value as string
+    }
+    if (process.server) {
+        headers = {
+            ...headers,
+            ...useRequestHeaders(["referer", "cookie"])
+        }
     }
     const defaults: UseFetchOptions<T> = {
         baseURL: config.public.apiBase as string,
         key: url as string,
         credentials: 'include',
         headers: {
-            ...headers
+            ...headers,
+            ...options?.headers
         },
         onResponse(_ctx) {
             // _ctx.response._data = new myBusinessResponse(_ctx.response._data)
