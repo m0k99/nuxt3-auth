@@ -25,7 +25,6 @@ async function handleLogin() {
       trailing-icon="heroicons:envelope-solid"
     />
     <MInput v-model="form.password" required name="password" type="password" placeholder="Password"/>
-    <!--      <MCheckbox v-model="form.remember" name="remember" label="Remember me 30 days"/>-->
     <MButton
       :loading="loginPending"
       type="submit"
