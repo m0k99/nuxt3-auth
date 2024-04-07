@@ -31,23 +31,23 @@ const toggleComponent = () => {
     </div>
     <component :is="form[activeForm]" @toggle="toggleComponent"/>
     <div class="relative max-w-[320px] mx-auto w-full">
-      <div class="bg-gray-300 h-px w-full"></div>
-      <span class="absolute text-gray-300 left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 px-3 bg-white">or</span>
+      <div class="bg-gray-300 dark:bg-emerald-500 h-px w-full"></div>
+      <span class="absolute text-gray-300 dark:text-emerald-500 left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 px-3 bg-white dark:bg-slate-900">Or</span>
     </div>
     <div class="text-center">
-      <span v-if="activeForm === 'LoginForm'" class="text-gray-500">
+      <span v-if="activeForm === 'LoginForm'" class="text-gray-500 dark:text-gray-400">
         Are you new?
         <MButton
-          class="underline text-medium-blue"
+          class="underline text-medium-blue dark:text-emerald-500"
           @click="toggleComponent"
         >
           Create an account
         </MButton>
       </span>
-      <span v-else class="text-gray-500">
+      <span v-else class="text-gray-500 dark:text-gray-400">
         Have an account?
         <MButton
-          class="underline text-medium-blue"
+          class="underline text-medium-blue dark:text-emerald-500"
           @click="toggleComponent"
         >
           Login
