@@ -24,7 +24,7 @@ async function handleLogout() {
           :code="userJson"
         />
     </div>
-    <MButton @click="handleLogout" class="w-full h-12 text-white bg-medium-blue font-medium mt-4 md:rounded-xl transition-all duration-500 ease-in-out" block>
+    <MButton @click="handleLogout" class="w-full h-12 text-white bg-medium-blue dark:bg-emerald-500 font-medium mt-4 md:rounded-xl transition-all duration-500 ease-in-out" block>
       Logout
     </MButton>
   </div>
