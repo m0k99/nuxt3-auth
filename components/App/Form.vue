@@ -22,10 +22,10 @@ const toggleComponent = () => {
   <div class="grid grid-cols-1 gap-8 md:gap-8 place-content-center px-3 py-10">
     <div class="text-center md:mb-10">
       <img class="block mx-auto w-[40px] object-cover mb-5" src="/icons/house.png" alt="">
-      <h1 class="text-4xl text-[40px] font-semibold -tracking-[0.01em] mb-3">
+      <h1 class="text-4xl text-[40px] dark:text-white font-semibold -tracking-[0.01em] mb-3">
         Welcome home
       </h1>
-      <span>
+      <span class="dark:text-white">
         Please enter your details.
       </span>
     </div>
