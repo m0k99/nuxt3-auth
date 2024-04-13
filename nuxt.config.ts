@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     modules: [
         '@nuxtjs/tailwindcss',
         'nuxt-icon',
-        '@pinia/nuxt'
+        '@pinia/nuxt',
+        '@nuxtjs/color-mode'
     ],
     css: ['~/assets/scss/main.scss'],
     tailwindcss: {
