@@ -1,5 +1,6 @@
 <template>
   <div>
+    <AppThemeMode class="right-3 top-3"></AppThemeMode>
     <NuxtPage></NuxtPage>
   </div>
 </template>
@@ -7,7 +8,7 @@
 useHead({
   title: 'Nuxt 3 auth',
   meta: [
-    { name: 'theme-color', content: '#292E49' }
+    {name: 'theme-color', content: '#292E49'}
   ],
 })
 </script>

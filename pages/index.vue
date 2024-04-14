@@ -2,7 +2,7 @@
   <AppMainContainer>
     <div class="w-dvw h-dvh flex items-center justify-center px-3">
       <div
-        class="w-full overflow-auto bg-white rounded-3xl grid transition-all duration-500 ease-in-out"
+        class="w-full overflow-auto bg-white dark:bg-blue-950 rounded-3xl grid transition-all duration-500 ease-in-out"
         :class="[loggedIn?'min-h-2/5 max-w-[600px] md:grid-cols-1 md:rounded-3xl':'md:grid-cols-2 h-5/6 max-w-[1100px] w-full md:rounded-[80px]']"
       >
         <LazyAppForm v-if="!loggedIn"/>
@@ -27,5 +27,4 @@ const loggedIn = computed(() => auth.isLoggedIn)
 </script>
 
 <style lang="scss" scoped>
-//style
 </style>
