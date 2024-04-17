@@ -12,7 +12,9 @@ export default defineNuxtConfig({
         '@nuxtjs/color-mode'
     ],
     colorMode: {
-        classSuffix: ''
+        classSuffix: '',
+        preference: 'system',
+        fallback: 'light',
     },
     css: ['~/assets/scss/main.scss'],
     tailwindcss: {
