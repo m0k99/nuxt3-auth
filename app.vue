@@ -10,10 +10,18 @@
   </AppMainContainer>
 </template>
 <script setup>
+import {computed} from "vue";
+
+const colorMode = useColorMode()
+
+const color = computed(() => colorMode.preference === 'dark' ? '#243B55' : '#292E49')
 useHead({
   title: 'Nuxt 3 auth',
   meta: [
-    {name: 'theme-color', content: '#292E49'}
+    {ey: 'theme-color', name: 'theme-color', content: color}
   ],
+  htmlAttrs: {
+    lang: 'en'
+  }
 })
 </script>
