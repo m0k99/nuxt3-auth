@@ -120,10 +120,11 @@ export default defineComponent({
     const className = computed(() => {
       return twMerge(twJoin(
         ui.base,
+        ui.dark,
         ui.rounded,
         ui.placeholder,
         ui.padding,
-        ui.transition
+        ui.transition,
       ), props.inputClass)
     })
 

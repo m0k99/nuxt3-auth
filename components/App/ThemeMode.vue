@@ -11,9 +11,7 @@ const theme = ref(colorMode.value === 'light')
 </script>
 
 <template>
-  <span class="absolute z-10">
     <input @click="toggle" v-model="theme" class="toggle" type="checkbox">
-  </span>
 </template>
 
 <style lang="scss" scoped>
@@ -28,9 +26,9 @@ const theme = ref(colorMode.value === 'light')
   height: var(--size);
   box-shadow: inset calc(var(--size) * 0.33) calc(var(--size) * -0.25) 0;
   border-radius: 999px;
-  color: hsl(240, 100%, 95%);
-
+  color: #e2e8f0;
   transition: all 500ms;
+  z-index: 10;
 
   &:checked {
     --ray-size: calc(var(--size) * -0.4);
@@ -38,7 +36,7 @@ const theme = ref(colorMode.value === 'light')
     --offset-diagonal: calc(var(--size) * 0.45);
 
     transform: scale(0.75);
-    color: hsl(40, 100%, 50%);
+    color: #e2e8f0;
     box-shadow: inset 0 0 0 var(--size),
     calc(var(--offset-orthogonal) * -1) 0 0 var(--ray-size),
     var(--offset-orthogonal) 0 0 var(--ray-size),

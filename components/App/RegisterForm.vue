@@ -63,7 +63,7 @@ async function handelRegister() {
       :loading="registerPending"
       type="submit"
       block
-      class="h-12 text-white bg-medium-blue font-medium mt-4"
+      class="h-12 text-white bg-medium-blue font-medium mt-4 dark:bg-emerald-500"
     >
       Register
     </MButton>
